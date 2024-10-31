@@ -1,1 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Diwali Vibes Only 🔥</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #ffd700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      transition: background-color 0.4s;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin: 0.5em 0;
+      text-align: center;
+      color: #ff5733;
+      text-shadow: 0 0 15px #ffd700, 0 0 20px #ff8c00;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    button {
+      padding: 15px 35px;
+      font-size: 1.3em;
+      background-color: #ff5733;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: transform 0.2s, background-color 0.2s;
+      box-shadow: 0 0 15px #ff8c00;
+      animation: buttonShake 2s infinite;
+    }
+
+    button:hover {
+      background-color: #ff8c00;
+      transform: scale(1.1);
+    }
+
+    @keyframes buttonShake {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff8c00;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+    }
+
+    .message {
+      position: fixed;
+      top: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #ffd700;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      display: none;
+      text-align: center;
+      animation: fadeInOut 2s ease;
+      z-index: 10;
+    }
+
+    .message img {
+      max-width: 150px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      20%, 80% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🪔 Let’s Get Lit! 🪔</h1>
+  <p>Ready for some *popping* Diwali vibes? 😎</p>
+  <button onclick="startDiwaliParty()">Celebrate Diwali!</button>
+  <div class="message" id="messageBox">Diwali Done Right 🎉</div>
+
+  <script>
+    const messages = [
+      { text: "🎆 Kaboom! Hope you're awake now!", gif: "https://makeagif.com/i/aOoaQu" },
+      { text: "🔥 Shine brighter than your screen brightness!", gif: "https://makeagif.com/i/aOoaQu" },
+      { text: "💥 Pop! Snap! Pow! That’s Diwali magic 💥", gif: "https://makeagif.com/i/aOoaQu" },
+      { text: "🎉 May your snacks be endless 🎉", gif: "https://makeagif.com/i/aOoaQu" },
+      { text: "⚡ Diwali vibes over 9000 ⚡", gif: "https://makeagif.com/i/aOoaQu" },
+      { text: "💫 Diya’s got nothing on you, rockstar!", gif: "https://tenor.com/en-IN/view/happy-diwali-gif-19192291" },
+      { text: "✨ Good vibes, better snacks!", gif: "https://media.giphy.com/media/3ov9jWBV2HFBsw5AR2/giphy.gif" }
+    ];
+
+    function startDiwaliParty() {
+      createFireworks();
+      showRandomMessage();
+      changeBackgroundColor();
+      randomizeButtonText();
+    }
+
+    function createFireworks() {
+      for (let i = 0; i < 25; i++) {
+        const firework = document.createElement("div");
+        firework.classList.add("firework");
+
+        // Random positions for fireworks
+        const x = Math.random() * 300 - 150 + "px";
+        const y = Math.random() * 300 - 150 + "px";
+        firework.style.setProperty("--x", x);
+        firework.style.setProperty("--y", y);
+
+        document.body.appendChild(firework);
+
+        // Remove firework after animation
+        setTimeout(() => firework.remove(), 1000);
+      }
+    }
+
+    function showRandomMessage() {
+      const messageBox = document.getElementById("messageBox");
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      messageBox.innerHTML = `${randomMessage.text} <img src="${randomMessage.gif}" alt="GIF">`;
+      messageBox.style.display = "block";
+      setTimeout(() => {
+        messageBox.style.display = "none";
+      }, 2500);
+    }
+
+    function changeBackgroundColor() {
+      const colors = ["#111", "#222", "#333", "#440", "#550", "#770"];
+      document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function randomizeButtonText() {
+      const button = document.querySelector("button");
+      const buttonTexts = ["Light it Up!", "Hit the Boom!", "Get Lit!", "Spark It!", "Bring the Fire!"];
+      button.textContent = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+    }
+  </script>
+</body>
+</html>
 
